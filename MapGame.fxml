@@ -32,17 +32,17 @@
     </HBox>
       <Pane prefHeight="154.0" prefWidth="638.0">
          <children>
-            <ImageView fitHeight="117.0" fitWidth="172.0" layoutX="31.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="80.0" fitWidth="133.0" layoutX="57.0" layoutY="37.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@png/catfood.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="117.0" fitWidth="166.0" layoutX="271.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="95.0" fitWidth="116.0" layoutX="283.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@png/catplay.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="117.0" fitWidth="166.0" layoutX="505.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="95.0" fitWidth="116.0" layoutX="515.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@png/dokuringo.png" />
                </image>

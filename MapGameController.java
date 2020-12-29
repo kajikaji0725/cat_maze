@@ -22,8 +22,8 @@ public class MapGameController implements Initializable {
     public GridPane mapGrid;
     public ImageView[] mapImageViews;
     public Timeline timer;
-    public int secondCount = 0;
-    public int minuteCount = 10;
+    public int secondCount = 5;
+    public int minuteCount = 0;
 
     private int[] Qua = new int[5];
 
@@ -47,8 +47,7 @@ public class MapGameController implements Initializable {
         mapImageViews = new ImageView[mapData.getHeight() * mapData.getWidth()];
         for (int y = 0; y < mapData.getHeight(); y++) {
             for (int x = 0; x < mapData.getWidth(); x++) {
-                int index = y * mapData.getWidth() + x;
-                mapImageViews[index] = mapData.getImageView(x, y);
+                setMapImageView(x, y);
             }
         }
 
@@ -74,9 +73,15 @@ public class MapGameController implements Initializable {
         timer.play();
 
         drawMap(chara, mapData);
-        FOOD.setText("0/3"); // 今持っているアイテム/全部の猫缶の数
-        PLAY.setText("0/3");// 今持っているアイテム/全部のねこじゃらしの数
-        DOKURINGO.setText("0/3");// 今持っているアイテム/全部のどくりんごの数
+        FOOD.setText("0/3"); // ???????????A?C?e??/?S????L????
+        PLAY.setText("0/3");// ???????????A?C?e??/?S??????????????
+        DOKURINGO.setText("0/3");// ???????????A?C?e??/?S???????????
+    }
+
+    // set mapImageViews
+    void setMapImageView(int x, int y) {
+        int index = y * mapData.getWidth() + x;
+        mapImageViews[index] = mapData.getImageView(x, y);
     }
 
     // Draw the map
@@ -109,6 +114,19 @@ public class MapGameController implements Initializable {
         } else if (key == KeyCode.L) {
             rightButtonAction();
         }
+
+        int data = mapData.getMap(chara.getPosX(), chara.getPosY());
+        if (data == MapData.TYPE_FOOD || data == MapData.TYPE_PLAY || data == MapData.TYPE_DOKURINGO) {
+            Qua[data]++;
+            collection_item(data, Qua[data]);
+            mapData.setMap(chara.getPosX(), chara.getPosY(), MapData.TYPE_SPACE);
+            mapData.setImageViews();
+        }
+        drawMap(chara, mapData);
+
+        setMapImageView(chara.getPosX(), chara.getPosY());
+
+        System.out.println(mapData.getMap(chara.getPosX(), chara.getPosY()));
     }
 
     // Operations for going the cat down
@@ -116,14 +134,6 @@ public class MapGameController implements Initializable {
         printAction("UP");
         chara.setCharaDirection(MoveChara.TYPE_UP);
         chara.move(0, -1);
-        int data = mapData.getMap(chara.getPosX(), chara.getPosY());
-        if (data == MapData.TYPE_FOOD || data == MapData.TYPE_PLAY || data == MapData.TYPE_DOKURINGO) {
-            Qua[data]++;
-            collection_item(data, Qua[data]);
-            mapData.setMap(chara.getPosX(), chara.getPosY(), MapData.TYPE_SPACE);
-            mapData.setImageViews();
-        }
-        drawMap(chara, mapData);
     }
 
     // Operations for going the cat down
@@ -131,14 +141,6 @@ public class MapGameController implements Initializable {
         printAction("DOWN");
         chara.setCharaDirection(MoveChara.TYPE_DOWN);
         chara.move(0, 1);
-        int data = mapData.getMap(chara.getPosX(), chara.getPosY());
-        if (data == MapData.TYPE_FOOD || data == MapData.TYPE_PLAY || data == MapData.TYPE_DOKURINGO) {
-            Qua[data]++;
-            collection_item(data, Qua[data]);
-            mapData.setMap(chara.getPosX(), chara.getPosY(), MapData.TYPE_SPACE);
-            mapData.setImageViews();
-        }
-        drawMap(chara, mapData);
     }
 
     // Operations for going the cat right
@@ -146,14 +148,6 @@ public class MapGameController implements Initializable {
         printAction("LEFT");
         chara.setCharaDirection(MoveChara.TYPE_LEFT);
         chara.move(-1, 0);
-        int data = mapData.getMap(chara.getPosX(), chara.getPosY());
-        if (data == MapData.TYPE_FOOD || data == MapData.TYPE_PLAY || data == MapData.TYPE_DOKURINGO) {
-            Qua[data]++;
-            collection_item(data, Qua[data]);
-            mapData.setMap(chara.getPosX(), chara.getPosY(), MapData.TYPE_SPACE);
-            mapData.setImageViews();
-        }
-        drawMap(chara, mapData);
     }
 
     // Operations for going the cat right
@@ -161,14 +155,7 @@ public class MapGameController implements Initializable {
         printAction("RIGHT");
         chara.setCharaDirection(MoveChara.TYPE_RIGHT);
         chara.move(1, 0);
-        int data = mapData.getMap(chara.getPosX(), chara.getPosY());
-        if (data == MapData.TYPE_FOOD || data == MapData.TYPE_PLAY || data == MapData.TYPE_DOKURINGO) {
-            Qua[data]++;
-            collection_item(data, Qua[data]);
-            mapData.setMap(chara.getPosX(), chara.getPosY(), MapData.TYPE_SPACE);
-            mapData.setImageViews();
-        }
-        drawMap(chara, mapData);
+
     }
 
     public void func1ButtonAction(ActionEvent event) {
@@ -217,15 +204,15 @@ public class MapGameController implements Initializable {
         }
     }
 
-    // どくりんご取った時のアクション　（予定）
+    // ??????????????A?N?V?????@?i?\??j
     public void sleep() {
         try {
-            Thread.sleep(10000); // 10秒
+            Thread.sleep(10000); // 10?b
         } catch (InterruptedException e) {
         }
     }
 
-    // アイテム数の表示
+    // ?A?C?e??????\??
     public void collection_item(int data, int Que) {
 
         if (data == MapData.TYPE_PLAY) {
