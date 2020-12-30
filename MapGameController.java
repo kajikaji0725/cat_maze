@@ -22,8 +22,9 @@ public class MapGameController implements Initializable {
     public GridPane mapGrid;
     public ImageView[] mapImageViews;
     public Timeline timer;
-    public int secondCount = 5;
-    public int minuteCount = 0;
+    public int secondCount = 0;
+    public int minuteCount = 10;
+    public int score = 2000;
 
     private int[] Qua = new int[5];
 
@@ -38,6 +39,9 @@ public class MapGameController implements Initializable {
 
     @FXML
     public Label DOKURINGO;
+
+    @FXML
+    public Label Score;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -76,6 +80,7 @@ public class MapGameController implements Initializable {
         FOOD.setText("0/3"); // ???????????A?C?e??/?S????L????
         PLAY.setText("0/3");// ???????????A?C?e??/?S??????????????
         DOKURINGO.setText("0/3");// ???????????A?C?e??/?S???????????
+        Score.setText(String.valueOf(score));
     }
 
     // set mapImageViews
@@ -127,10 +132,20 @@ public class MapGameController implements Initializable {
         setMapImageView(chara.getPosX(), chara.getPosY());
 
         System.out.println(mapData.getMap(chara.getPosX(), chara.getPosY()));
+
+        if (score == 0) {
+            try {
+                MapGame.changeSceneByFXML("gameover.fxml");
+            } catch (Exception e) {
+                System.out.println(e);
+            }
+        }
     }
 
     // Operations for going the cat down
     public void upButtonAction() {
+        score -= 100;
+        Score.setText(String.valueOf(score));
         printAction("UP");
         chara.setCharaDirection(MoveChara.TYPE_UP);
         chara.move(0, -1);
@@ -138,6 +153,8 @@ public class MapGameController implements Initializable {
 
     // Operations for going the cat down
     public void downButtonAction() {
+        score -= 100;
+        Score.setText(String.valueOf(score));
         printAction("DOWN");
         chara.setCharaDirection(MoveChara.TYPE_DOWN);
         chara.move(0, 1);
@@ -145,6 +162,8 @@ public class MapGameController implements Initializable {
 
     // Operations for going the cat right
     public void leftButtonAction() {
+        score -= 100;
+        Score.setText(String.valueOf(score));
         printAction("LEFT");
         chara.setCharaDirection(MoveChara.TYPE_LEFT);
         chara.move(-1, 0);
@@ -152,6 +171,8 @@ public class MapGameController implements Initializable {
 
     // Operations for going the cat right
     public void rightButtonAction() {
+        score -= 100;
+        Score.setText(String.valueOf(score));
         printAction("RIGHT");
         chara.setCharaDirection(MoveChara.TYPE_RIGHT);
         chara.move(1, 0);
@@ -226,5 +247,4 @@ public class MapGameController implements Initializable {
             System.out.println(Que);
         }
     }
-
 }

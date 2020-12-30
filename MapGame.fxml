@@ -23,11 +23,25 @@
 	<Button prefWidth="100" text="func2" />
 	<Button prefWidth="100" text="func3" />
 	<Button prefWidth="100" text="func4" />
-            <Label fx:id="time" alignment="CENTER" text="Label">
-               <font>
-                  <Font size="22.0" />
-               </font>
-            </Label>
+            <Pane prefHeight="38.0" prefWidth="270.0">
+               <children>
+                  <Label fx:id="" alignment="CENTER" layoutX="112.0" layoutY="-2.0" prefHeight="26.0" prefWidth="62.0" text="Score">
+                     <font>
+                        <Font size="22.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="time" alignment="CENTER" layoutY="-2.0" text="Label">
+                     <font>
+                        <Font size="22.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="Score" layoutX="186.0" layoutY="-2.0" text="Label">
+                     <font>
+                        <Font size="22.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
       </children>
     </HBox>
       <Pane prefHeight="154.0" prefWidth="638.0">
